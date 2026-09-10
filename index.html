@@ -6,13 +6,13 @@
     <title>Valentina Tap</title>
     <style>
         :root {
-            --bg-color: #fce4ec;
-            --panel-bg: #ffffff;
-            --lane-1: #ffb3ba; /* Rosa Pastel */
-            --lane-2: #ffdfba; /* Pêssego / Laranja Pastel */
-            --lane-3: #ffffba; /* Amarelo Pastel */
-            --lane-4: #baffc9; /* Verde Pastel */
-            --text-color: #5d4037;
+            --bg-color: #0f1016;
+            --panel-bg: #1a1c29;
+            --lane-1: #ff758c; /* Rosa Neon Suave */
+            --lane-2: #ffb199; /* Pêssego Neon */
+            --lane-3: #fce38a; /* Amarelo Pastel Escuro */
+            --lane-4: #95e1d3; /* Verde Água Neon */
+            --text-color: #f0f2f5;
         }
 
         * {
@@ -44,8 +44,8 @@
             max-height: 780px;
             background: var(--panel-bg);
             border-radius: 30px;
-            border: 4px solid #f8bbd0;
-            box-shadow: 0 10px 30px rgba(248, 187, 208, 0.5);
+            border: 4px solid #30344f;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
             display: flex;
             flex-direction: column;
             overflow: hidden;
@@ -57,8 +57,8 @@
             justify-content: space-between;
             align-items: center;
             padding: 12px 18px;
-            background: #fff0f5;
-            border-bottom: 3px solid #f8bbd0;
+            background: #23263b;
+            border-bottom: 3px solid #30344f;
             z-index: 10;
         }
 
@@ -68,7 +68,7 @@
 
         .hud-label {
             font-size: 11px;
-            color: #ad1457;
+            color: #a5b1c2;
             font-weight: bold;
             text-transform: uppercase;
             letter-spacing: 1px;
@@ -78,17 +78,17 @@
         .hud-value {
             font-size: 18px;
             font-weight: 900;
-            color: #880e4f;
+            color: #ffffff;
         }
 
-        .hud-value.combo { color: #ff6f00; }
-        .hud-value.level { color: #7b1fa2; }
+        .hud-value.combo { color: #ffbe76; }
+        .hud-value.level { color: #ff7979; }
 
         /* BARRA DE PROGRESSO DO NÍVEL */
         .progress-bar-container {
             width: 100%;
-            height: 12px;
-            background: #f1f8e9;
+            height: 10px;
+            background: #12131c;
             position: relative;
             z-index: 10;
         }
@@ -96,8 +96,8 @@
         .progress-bar-fill {
             height: 100%;
             width: 0%;
-            background: linear-gradient(90deg, #ff80ab, #b9f6ca);
-            border-radius: 0 6px 6px 0;
+            background: linear-gradient(90deg, #ff758c, #95e1d3);
+            border-radius: 0 5px 5px 0;
             transition: width 0.2s ease-out;
         }
 
@@ -106,7 +106,7 @@
             flex: 1;
             width: 100%;
             height: 100%;
-            background: #fff9fb;
+            background: #151722;
             cursor: pointer;
         }
 
@@ -115,14 +115,14 @@
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             height: 85px;
-            background: #fff0f5;
-            border-top: 3px solid #f8bbd0;
+            background: #23263b;
+            border-top: 3px solid #30344f;
         }
 
         .touch-btn {
             border: none;
             background: transparent;
-            color: #5d4037;
+            color: #ffffff;
             font-size: 16px;
             font-weight: bold;
             cursor: pointer;
@@ -131,7 +131,7 @@
             align-items: center;
             justify-content: center;
             gap: 3px;
-            border-right: 2px solid #f8bbd0;
+            border-right: 2px solid #30344f;
             transition: background 0.08s, transform 0.05s;
         }
 
@@ -140,10 +140,10 @@
         .touch-btn span.key {
             font-size: 11px;
             opacity: 0.7;
-            background: #ffffff;
+            background: #2f3542;
             padding: 2px 7px;
             border-radius: 10px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
         }
 
         .btn-0 { border-bottom: 6px solid var(--lane-1); }
@@ -152,7 +152,7 @@
         .btn-3 { border-bottom: 6px solid var(--lane-4); }
 
         .touch-btn.active {
-            background: #f8bbd0 !important;
+            background: #3a3f5c !important;
             transform: scale(0.95);
         }
 
@@ -160,55 +160,57 @@
         .overlay {
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(255, 240, 245, 0.96);
+            background: rgba(15, 16, 22, 0.95);
             backdrop-filter: blur(6px);
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             z-index: 20;
-            padding: 24px;
+            padding: 20px;
             text-align: center;
+            overflow-y: auto;
         }
 
         .overlay h1 {
-            font-size: 34px;
-            margin-bottom: 10px;
-            color: #ec407a;
+            font-size: 28px;
+            margin-bottom: 8px;
+            color: #ff758c;
             font-weight: 900;
-            text-shadow: 2px 2px 0px #f8bbd0;
+            text-shadow: 2px 2px 0px #30344f;
         }
 
         .overlay p {
-            color: #6d4c41;
-            font-size: 15px;
-            margin-bottom: 20px;
-            line-height: 1.6;
+            color: #a5b1c2;
+            font-size: 14px;
+            margin-bottom: 15px;
+            line-height: 1.5;
             max-width: 320px;
         }
 
         .trophy-icon {
-            font-size: 70px;
-            margin: 10px 0;
+            font-size: 55px;
+            margin: 5px 0;
             animation: bounce 0.8s infinite alternate ease-in-out;
         }
 
         @keyframes bounce {
             from { transform: translateY(0); }
-            to { transform: translateY(-12px); }
+            to { transform: translateY(-10px); }
         }
 
         .btn-start {
-            padding: 16px 40px;
-            font-size: 20px;
+            padding: 12px 30px;
+            font-size: 17px;
             font-weight: 900;
             color: #ffffff;
-            background: #ec407a;
+            background: #ff758c;
             border: none;
             border-radius: 50px;
             cursor: pointer;
-            box-shadow: 0 6px 15px rgba(236, 64, 122, 0.4);
+            box-shadow: 0 6px 15px rgba(255, 117, 140, 0.4);
             transition: transform 0.15s;
+            margin-top: 10px;
         }
 
         .btn-start:active { transform: scale(0.95); }
@@ -225,13 +227,67 @@
             opacity: 0;
             transition: all 0.12s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             z-index: 15;
-            text-shadow: 2px 2px 0px #ffffff;
+            text-shadow: 2px 2px 0px #000000;
         }
 
         .rating-popup.show {
             opacity: 1;
             transform: translate(-50%, -70%) scale(1.15);
         }
+
+        /* INPUT E RANKING */
+        .input-group {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 12px;
+            width: 100%;
+            max-width: 280px;
+            justify-content: center;
+        }
+
+        .player-input {
+            padding: 10px 14px;
+            border-radius: 20px;
+            border: 2px solid #30344f;
+            background: #23263b;
+            color: #fff;
+            font-size: 15px;
+            outline: none;
+            width: 100%;
+            text-align: center;
+        }
+
+        .ranking-container {
+            width: 100%;
+            max-width: 300px;
+            background: #1a1c29;
+            border: 2px solid #30344f;
+            border-radius: 12px;
+            padding: 8px;
+            margin-top: 10px;
+            max-height: 160px;
+            overflow-y: auto;
+        }
+
+        .ranking-title {
+            font-size: 13px;
+            font-weight: bold;
+            color: #ffbe76;
+            margin-bottom: 6px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .ranking-item {
+            display: flex;
+            justify-content: space-between;
+            font-size: 13px;
+            padding: 4px 8px;
+            border-bottom: 1px solid #23263b;
+            color: #dcdde1;
+        }
+
+        .ranking-item:last-child { border-bottom: none; }
     </style>
 </head>
 <body>
@@ -280,7 +336,7 @@
     <!-- TELA INICIAL -->
     <div id="start-screen" class="overlay">
         <h1>Valentina Tap ✨</h1>
-        <p>Toque nas bolinhas fofas quando elas chegarem no círculo da mesma cor!</p>
+        <p>Toque nas bolinhas fofas quando elas chegarem no círculo correspondente!</p>
         <button class="btn-start" onclick="startLevel()">INICIAR 1º NÍVEL</button>
     </div>
 
@@ -296,24 +352,53 @@
     <div id="gameover-screen" class="overlay hidden">
         <h1>OPS! QUASE LÁ! 💖</h1>
         <p id="final-stats">Pontuação: 0<br>Maior Combo: 0</p>
-        <button class="btn-start" onclick="restartFromLevel1()">TENTAR NOVAMENTE</button>
+        
+        <div class="input-group">
+            <input type="text" id="player-name" class="player-input" placeholder="Seu Nome" maxlength="12" value="Valentina">
+        </div>
+        <button class="btn-start" id="save-btn" onclick="saveScore()">SALVAR RESULTADO</button>
+
+        <div class="ranking-container">
+            <div class="ranking-title">Ranking (Melhores)</div>
+            <div id="ranking-list"></div>
+        </div>
+
+        <button class="btn-start" style="background:#30344f; margin-top:8px;" onclick="restartFromLevel1()">TENTAR NOVAMENTE</button>
     </div>
 
 </div>
 
 <script>
-    // --- ÁUDIO SINTETIZADO ---
+    // --- ÁUDIO SINTETIZADO COM MELODIA SEQUENCIAL ---
     const AudioCtx = window.AudioContext || window.webkitAudioContext;
     let audioCtx = null;
+
+    // Escala de Dó Maior (C Major) para formar uma musiquinha fluida e harmoniosa a cada toque
+    const melodyNotes = [
+        261.63, // C4 (Dó)
+        293.66, // D4 (Ré)
+        329.63, // E4 (Mi)
+        349.23, // F4 (Fá)
+        392.00, // G4 (Sol)
+        440.00, // A4 (Lá)
+        493.88, // B4 (Si)
+        523.25, // C5 (Dó agudo)
+        587.33, // D5 (Ré agudo)
+        659.25  // E5 (Mi agudo)
+    ];
+    let melodyIndex = 0;
 
     function initAudio() {
         if (!audioCtx) audioCtx = new AudioCtx();
         if (audioCtx.state === 'suspended') audioCtx.resume();
     }
 
-    function playNoteSound(freq) {
+    function playSequentialMelodyNote() {
         if (!audioCtx) return;
         try {
+            const freq = melodyNotes[melodyIndex % melodyNotes.length];
+            melodyIndex++;
+
             const osc = audioCtx.createOscillator();
             const gain = audioCtx.createGain();
             osc.type = 'triangle';
@@ -354,8 +439,8 @@
             const osc = audioCtx.createOscillator();
             const gain = audioCtx.createGain();
             osc.type = 'sine';
-            osc.frequency.setValueAtTime(200, audioCtx.currentTime);
-            osc.frequency.exponentialRampToValueAtTime(120, audioCtx.currentTime + 0.15);
+            osc.frequency.setValueAtTime(180, audioCtx.currentTime);
+            osc.frequency.exponentialRampToValueAtTime(100, audioCtx.currentTime + 0.15);
             gain.gain.setValueAtTime(0.1, audioCtx.currentTime);
             gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.15);
             osc.connect(gain);
@@ -366,10 +451,6 @@
     }
 
     // --- CONFIGURAÇÕES DE NÍVEL E TROFÉUS ---
-    // Nível 1: 3000 pontos
-    // Nível 2: 7000 pontos
-    // Nível 3: 12000 pontos
-    // Nível 4+: Fórmula geral N * (N + 2) * 1000 ou progressão customizada
     const trophies = ['🏆', '🥇', '👑', '🌟', '💎', '🦄', '🎀', '🪄', '💖', '🌈'];
 
     function getLevelTarget(lvl) {
@@ -383,9 +464,8 @@
     const canvas = document.getElementById('gameCanvas');
     const ctx = canvas.getContext('2d');
 
-    const laneColors = ['#ffb3ba', '#ffdfba', '#ffffba', '#baffc9'];
+    const laneColors = ['#ff758c', '#ffb199', '#fce38a', '#95e1d3'];
     const laneIcons = ['🌸', '⭐', '🍭', '🎀'];
-    const laneFreqs = [329.63, 392.00, 440.00, 523.25];
     const keyMap = { 'a': 0, 's': 1, 'k': 2, 'l': 3, 'A': 0, 'S': 1, 'K': 2, 'L': 3 };
 
     let isPlaying = false;
@@ -404,6 +484,7 @@
 
     let spawnInterval = 1400;
     let noteSpeed = 2.2;
+    let scoreSaved = false;
 
     function resizeCanvas() {
         canvas.width = canvas.clientWidth;
@@ -424,8 +505,8 @@
         notes = [];
         particles = [];
         laneFlash = [0, 0, 0, 0];
+        scoreSaved = false;
 
-        // Velocidade baseada no Nível Atual
         noteSpeed = 2.0 + (currentLevel * 0.45);
         spawnInterval = Math.max(420, 1450 - (currentLevel * 120));
 
@@ -434,6 +515,8 @@
         document.getElementById('start-screen').classList.add('hidden');
         document.getElementById('victory-screen').classList.add('hidden');
         document.getElementById('gameover-screen').classList.add('hidden');
+        document.getElementById('save-btn').disabled = false;
+        document.getElementById('save-btn').innerText = "SALVAR RESULTADO";
 
         isPlaying = true;
         lastSpawnTime = performance.now();
@@ -453,7 +536,6 @@
         document.getElementById('combo').innerText = combo + 'x';
         document.getElementById('trophy-count').innerText = `🏆 ${trophiesEarned.length}`;
 
-        // Atualizar Barra de Progresso
         const progress = Math.min(100, Math.max(0, ((score - levelStartScore) / (levelTargetScore - levelStartScore)) * 100));
         document.getElementById('progress-bar').style.width = progress + '%';
     }
@@ -483,12 +565,12 @@
             const x = i * laneWidth;
 
             if (laneFlash[i] > 0) {
-                ctx.fillStyle = laneColors[i] + '55';
+                ctx.fillStyle = laneColors[i] + '44';
                 ctx.fillRect(x, 0, laneWidth, canvas.height);
                 laneFlash[i] -= 0.08;
             }
 
-            ctx.strokeStyle = '#f8bbd0';
+            ctx.strokeStyle = '#30344f';
             ctx.lineWidth = 1.5;
             ctx.beginPath();
             ctx.moveTo(x, 0);
@@ -501,7 +583,7 @@
             ctx.arc(x + laneWidth / 2, targetY, 26, 0, Math.PI * 2);
             ctx.stroke();
 
-            ctx.fillStyle = '#ffffff';
+            ctx.fillStyle = '#1a1c29';
             ctx.fill();
 
             ctx.font = '18px sans-serif';
@@ -510,8 +592,8 @@
             ctx.fillText(laneIcons[i], x + laneWidth / 2, targetY);
         }
 
-        ctx.strokeStyle = '#f48fb1';
-        ctx.lineWidth = 3;
+        ctx.strokeStyle = '#4f5678';
+        ctx.lineWidth = 2;
         ctx.setLineDash([6, 6]);
         ctx.beginPath();
         ctx.moveTo(0, targetY);
@@ -587,15 +669,15 @@
                     if (distance <= 30) {
                         points = 100;
                         rating = "INCRÍVEL! 🌟";
-                        color = "#ec407a";
+                        color = "#ff758c";
                     } else if (distance <= 55) {
                         points = 60;
                         rating = "MUITO BEM! 💖";
-                        color = "#ab47bc";
+                        color = "#ffb199";
                     } else {
                         points = 30;
                         rating = "LEGAL! ✨";
-                        color = "#ffa726";
+                        color = "#fce38a";
                     }
 
                     combo++;
@@ -606,9 +688,10 @@
                     updateHUD();
                     showRating(rating, color);
                     createImpactParticles(lane * (canvas.width / 4) + (canvas.width / 8), targetY, laneColors[lane]);
-                    playNoteSound(laneFreqs[lane]);
+                    
+                    // Toca a próxima nota sequencial da musiquinha
+                    playSequentialMelodyNote();
 
-                    // CHECAR VITÓRIA DE NÍVEL
                     if (score >= levelTargetScore) {
                         completeLevel();
                     }
@@ -626,7 +709,7 @@
     function handleMiss() {
         combo = 0;
         document.getElementById('combo').innerText = '0x';
-        showRating("OPS! 🌸", "#ff7043");
+        showRating("OPS! 🌸", "#ff6b81");
         playMissSound();
 
         health -= 8;
@@ -703,7 +786,51 @@
             <b>Pontuação Final:</b> ${score}<br>
             <b>Troféus Conquistados:</b> ${trophiesEarned.join(' ') || 'Nenhum'}
         `;
+        renderRanking();
         document.getElementById('gameover-screen').classList.remove('hidden');
+    }
+
+    function saveScore() {
+        if (scoreSaved) return;
+        const nameInput = document.getElementById('player-name').value.trim() || 'Valentina';
+        
+        let ranking = JSON.parse(localStorage.getItem('valentina_tap_ranking') || '[]');
+        ranking.push({ name: nameInput, score: score, level: currentLevel, trophies: trophiesEarned.length });
+        
+        // Ordena do melhor para o piores (maior pontuação primeiro)
+        ranking.sort((a, b) => b.score - a.score);
+        
+        // Mantém apenas os top 10
+        ranking = ranking.slice(0, 10);
+        
+        localStorage.setItem('valentina_tap_ranking', JSON.stringify(ranking));
+        scoreSaved = true;
+        
+        document.getElementById('save-btn').disabled = true;
+        document.getElementById('save-btn').innerText = "SALVO COM SUCESSO!";
+        renderRanking();
+    }
+
+    function renderRanking() {
+        const rankingListEl = document.getElementById('ranking-list');
+        let ranking = JSON.parse(localStorage.getItem('valentina_tap_ranking') || '[]');
+        
+        if (ranking.length === 0) {
+            rankingListEl.innerHTML = `<div class="ranking-item" style="justify-content:center; color:#718093;">Nenhum registro ainda</div>`;
+            return;
+        }
+
+        let html = '';
+        ranking.forEach((item, index) => {
+            let medal = index === 0 ? '🥇' : index === 1 ? '🥈' : index === 2 ? '🥉' : `${index + 1}º`;
+            html += `
+                <div class="ranking-item">
+                    <span>${medal} ${item.name} (Nível ${item.level})</span>
+                    <b>${item.score} pts</b>
+                </div>
+            `;
+        });
+        rankingListEl.innerHTML = html;
     }
 
     function handleCanvasTouch(e) {
